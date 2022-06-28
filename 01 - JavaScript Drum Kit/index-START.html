@@ -64,7 +64,14 @@
 // Write a function
 //    that finds the clicked div ->
 //    data-key -> audio
-window.addEventListener('keydown', function(e) {
+window.addEventListener('keydown', playSound)
+
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+
+// FUNCTIONS
+function playSound(e) {
   // NOTE: audio[data-ownAttribute = "value"]
   const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
   const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
@@ -77,7 +84,7 @@ window.addEventListener('keydown', function(e) {
   // Add custom class to key
   key.classList.add("playing")
   
-})
+}
 
 // Now make the class disappear
   // NOTE: it is NOT enough to querySelectorAll, 
@@ -88,9 +95,6 @@ window.addEventListener('keydown', function(e) {
     if (e.propertyName !== 'transform') return;
     this.classList.remove('playing');
   }
-
-  const keys = document.querySelectorAll('.key');
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
  
 </script>
