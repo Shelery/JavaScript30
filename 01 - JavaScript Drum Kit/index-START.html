@@ -90,7 +90,7 @@ window.addEventListener('keydown', function(e) {
   }
 
   const keys = document.querySelectorAll('.key');
-  keys.forEach(key => key.addEventListener('transitioned', console.log(key)));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
  
 </script>
