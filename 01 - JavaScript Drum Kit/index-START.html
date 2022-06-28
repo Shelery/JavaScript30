@@ -58,7 +58,41 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+// What do I want to achive?
+// I want to console log the audio element of the clicked div
+// How?   
+// Write a function
+//    that finds the clicked div ->
+//    data-key -> audio
+window.addEventListener('keydown', function(e) {
+  // NOTE: audio[data-ownAttribute = "value"]
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+  
+  if (!audio) return;
+  // if there is an audio associated with the key
+  //  rewind (visszateker) the audio and play it
+  audio.currentTime = 0;
+  audio.play();
+  // Add custom class to key
+  key.classList.add("playing")
+  
+})
 
+// Now make the class disappear
+  // NOTE: it is NOT enough to querySelectorAll, 
+  //        you also have to loop through them
+  //    2: 'transitioned' is an event, just like 'clicked'
+   
+  function removeTransition(e){
+    if (e.propertyName !== 'transform') return;
+    this.classList.remove('playing');
+  }
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitioned', console.log(key)));
+
+ 
 </script>
 
 
